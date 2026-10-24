@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Birthday ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ffb6d5;
+  --light: #fff0f6;
+  --hot: #f16b9e;
+  --dark: #b94d7c;
+  --white: #fffafd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+  background: var(--light);
+  overflow-x: hidden;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: appear .6s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#home {
+  background:
+    radial-gradient(ellipse at top, #fffafd 0%, transparent 60%),
+    linear-gradient(145deg, #ffe3ef, #ffc3dc, #fff0f6);
+  text-align: center;
+}
+
+#write {
+  background: linear-gradient(135deg, #fff1f7, #ffd6e8);
+}
+
+#letters {
+  background: linear-gradient(135deg, #ffe8f1, #fff8fb);
+}
+
+.decor {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.d1 { top: 8%; left: 7%; font-size: 48px; }
+.d2 { top: 15%; right: 8%; font-size: 38px; animation-delay: .5s; }
+.d3 { bottom: 13%; left: 10%; font-size: 40px; animation-delay: 1s; }
+.d4 { bottom: 10%; right: 9%; font-size: 52px; animation-delay: 1.5s; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--hot);
+  margin-bottom: 20px;
+}
+
+.cake {
+  font-size: 92px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 10px #e77ba344);
+  animation: float 3s ease-in-out infinite;
+}
+
+h1, h2, .script {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(36px, 8vw, 68px);
+  line-height: 1.35;
+  color: #e65d94;
+  text-shadow: 2px 3px 0 white;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-top: 16px;
+  line-height: 1.9;
+  color: #a55b7b;
+}
+
+.btn {
+  border: none;
+  padding: 14px 25px;
+  margin-top: 28px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff9dc6, #eb6199);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px #ed7ba755;
+  transition: .25s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px #ed7ba777;
+}
+
+.btn.secondary {
+  background: white;
+  color: var(--hot);
+  border: 1px solid #ffd0e2;
+  box-shadow: none;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(29px, 6vw, 43px);
+  color: #e65d94;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  color: #aa6582;
+}
+
+.card {
+  background: #ffffffd9;
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 28px 22px;
+  box-shadow: 0 12px 40px #e783a51a;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #f6c4d9;
+  background: #fff8fb;
+  border-radius: 14px;
+  outline: none;
+  color: #9b4c70;
+  margin-bottom: 18px;
+  font-size: 13px;
+  transition: .2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #ed82ad;
+  box-shadow: 0 0 0 3px #ffbad533;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #d5a0b7;
+}
+
+.card .btn {
+  width: 100%;
+  margin-top: 0;
+}
+
+.back {
+  background: transparent;
+  border: none;
+  color: #c47798;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+.topline .btn {
+  margin: 0;
+  padding: 10px 15px;
+  white-space: nowrap;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.letter {
+  border: 1px solid white;
+  border-radius: 20px;
+  background: white;
+  padding: 18px 15px;
+  min-height: 155px;
+  text-align: left;
+  box-shadow: 0 8px 24px #d7789917;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.letter:hover {
+  transform: translateY(-4px) rotate(-1deg);
+}
+
+.letter .envelope {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.letter .sender {
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.letter .preview {
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 8px;
+  color: #b17b93;
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  background: #ffffffaa;
+  border: 1px dashed #f2a5c5;
+  padding: 30px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+#letterModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #67354b88;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#letterModal.show {
+  display: flex;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 430px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fffafd;
+  padding: 28px;
+  border-radius: 25px;
+  box-shadow: 0 20px 70px #622a4733;
+  animation: appear .3s ease;
+}
+
+.modal-card h2 {
+  font-size: 28px;
+  overflow-wrap: anywhere;
+}
+
+#modalMessage {
+  white-space: pre-wrap;
+  line-height: 1.9;
+  font-size: 13px;
+  margin: 18px 0;
+  overflow-wrap: anywhere;
+}
+
+.modal-date {
+  font-size: 10px;
+  color: #c18ba3;
+}
+
+.footer {
+  font-size: 10px;
+  margin-top: 25px;
+  color: #bd7b99;
+}
+
+.tiny-heart {
+  position: fixed;
+  z-index: 5;
+  bottom: -30px;
+  pointer-events: none;
+  animation: rise 4s linear forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .letter-grid { grid-template-columns: 1fr; }
+  .topline { align-items: flex-start; }
+  .topline .btn { font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: WELCOME -->
+<section class="page active" id="home">
+  <span class="decor d1">🎀</span>
+  <span class="decor d2">★</span>
+  <span class="decor d3">✧</span>
+  <span class="decor d4">🌷</span>
+
+  <div class="container">
+    <p class="eyebrow">A special day just for nila</p>
+    <div class="cake">🎂</div>
+    <h1>Happy<br>Birthday!</h1>
+
+    <p class="subtitle">
+      sebuah perayaan kecil. <br>
+      selamat bertumbuh, anila nirmala.
+    </p>
+
+    <button class="btn" onclick="goTo('write')">
+      OPEN MY BIRTHDAY →
+    </button>
+
+    <p class="footer">made with @nL just for my special day</p>
+  </div>
+</section>
+
+<!-- PAGE 2: SEND WISHES -->
+<section class="page" id="write">
+  <span class="decor d1">💌</span>
+  <span class="decor d2">🎀</span>
+  <span class="decor d4"></span>
+
+  <div class="container">
+    <p class="eyebrow">a little message for me</p>
+    <h2>Send Me a Wish </h2>
+    <p class="description">
+      selamat bertambah usia, aku. semoga semesta lebih ramah, dikelilingi jiwa-jiwa tulus, dan doa-doa diam-diam menemukan jalannya untuk pulang<br>
+      
+ 
+
+    <form class="card" id="wishForm">
+      <label for="sender">ur name </label>
+      <input
+        id="sender"
+        type="text"
+        maxlength="50"
+        placeholder="who are u?"
+        required
+      >
+
+      <label for="message">ur bday letter</label>
+      <textarea
+        id="message"
+        maxlength="2000"
+        placeholder="write something sweet for me..."
+        required
+      ></textarea>
+
+      <button class="btn" type="submit">send to nila</button>
+    </form>
+
+    <button class="back" onclick="goTo('home')">
+      ← back to the beginning
+    </button>
+    <br>
+    <button class="btn secondary" onclick="goTo('letters')">
+      READ MY LETTERS 
+    </button>
+  </div>
+</section>
+
+<!-- PAGE 3: BIRTHDAY LETTERS -->
+<section class="page" id="letters">
+  <span class="decor d1">🌸</span>
+  <span class="decor d2"></span>
+  <span class="decor d4">🎀</span>
+
+  <div class="container">
+    <p class="eyebrow">all the love in one place</p>
+    <h2>My Birthday Letters</h2>
+    <p class="description">
+      every word always means something to me<br>
+      Tap a letter to read it!
+    </p>
+
+    <div class="topline">
+      <span id="letterCount" style="font-size:12px">
+        💌 0 little letters
+      </span>
+
+      <button class="btn" onclick="goTo('write')">
+        + WRITE A WISH
+      </button>
+    </div>
+
+    <div id="letterGrid" class="letter-grid"></div>
+
+    <button class="back" onclick="goTo('home')">
+      ← back to birthday home
+    </button>
+
+    <p class="footer">terima kasih </p>
+  </div>
+</section>
+
+<!-- LETTER POPUP -->
+<div id="letterModal" onclick="closeModal(event)">
+  <div class="modal-card">
+    <div style="text-align:center;font-size:40px">💌</div>
+    <p class="eyebrow" style="text-align:center;margin-top:12px">
+      a letter for you
+    </p>
+    <h2 id="modalSender" style="text-align:center"></h2>
+    <p id="modalMessage"></p>
+    <p class="modal-date" id="modalDate"></p>
+
+    <button class="btn" style="width:100%" onclick="hideModal()">
+      kembali
+    </button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = "pinkBirthdayLetters_v1";
+
+function goTo(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(pageId).classList.add("active");
+
+  if (pageId === "letters") renderLetters();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function getLetters() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLetters(letters) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(letters));
+    return true;
+  } catch {
+    alert("Penyimpanan gagal. Coba kosongkan ruang penyimpanan browser.");
+    return false;
+  }
+}
+
+document.getElementById("wishForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const sender = document.getElementById("sender").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!sender || !message) {
+    alert("Isi nama dan suratnya dulu yaa ");
+    return;
+  }
+
+  const letters = getLetters();
+
+  letters.unshift({
+    id: Date.now().toString() + Math.random().toString(16).slice(2),
+    sender: sender,
+    message: message,
+    date: new Date().toLocaleString("id-ID", {
+      dateStyle: "long",
+      timeStyle: "short"
+    })
+  });
+
+  if (!saveLetters(letters)) return;
+
+  this.reset();
+  burstHearts();
+  alert("YAY! Your little letter has been saved! 💌🎀");
+  goTo("letters");
+});
+
+function renderLetters() {
+  const grid = document.getElementById("letterGrid");
+  const letters = getLetters();
+
+  document.getElementById("letterCount").textContent =
+    "💌 " + letters.length + " little letter" +
+    (letters.length === 1 ? "" : "s");
+
+  grid.replaceChildren();
+
+  if (letters.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.style.gridColumn = "1 / -1";
+    empty.textContent =
+      "૮ ˶ᵔ ᵕ ᵔ˶ ა ♡\n\nBelum ada surat, nila sedih:(";
+    grid.appendChild(empty);
+    return;
+  }
+
+  letters.forEach(letter => {
+    const card = document.createElement("article");
+    card.className = "letter";
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", "Baca surat dari " + letter.sender);
+
+    const icon = document.createElement("div");
+    icon.className = "envelope";
+    icon.textContent = "💌";
+
+    const sender = document.createElement("div");
+    sender.className = "sender";
+    sender.textContent = "to my birthday girl ";
+
+    const preview = document.createElement("p");
+    preview.className = "preview";
+    preview.textContent = letter.sender + ": " +
+      letter.message.slice(0, 65) +
+      (letter.message.length > 65 ? "..." : "");
+
+    card.append(icon, sender, preview);
+
+    card.addEventListener("click", () => showLetter(letter));
+
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        showLetter(letter);
+      }
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function showLetter(letter) {
+  document.getElementById("modalSender").textContent = letter.sender;
+  document.getElementById("modalMessage").textContent = letter.message;
+  document.getElementById("modalDate").textContent =
+    "♡ " + (letter.date || "a special birthday memory");
+
+  document.getElementById("letterModal").classList.add("show");
+}
+
+function hideModal() {
+  document.getElementById("letterModal").classList.remove("show");
+}
+
+function closeModal(event) {
+  if (event.target.id === "letterModal") hideModal();
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") hideModal();
+});
+
+function burstHearts() {
+  const symbols = ["♡", "💗", "💕", "✧", "🎀"];
+
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("span");
+    heart.className = "tiny-heart";
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5500);
+  }
+}
+
+renderLetters();
+</script>
+<!-- PAGE 4: MY PERSONAL BIRTHDAY WISHES -->
+<section class="page" id="dreams">
+
+  <span class="decor d1">🎀</span>
+  <span class="decor d2">🌷</span>
+  <span class="decor d3">♡</span>
+  <span class="decor d4">✨</span>
+
+  <div class="container">
+
+    <p class="eyebrow">a little letter to my future self</p>
+
+    <h2>My Birthday Wishes ♡</h2>
+
+    <p class="description">
+      Dear me, this is my new chapter. 🩰<br>
+      Write down everything your heart wishes for.
+    </p>
+
+    <div class="card">
+
+      <label for="wishTitle">My little dream 🎀</label>
+
+      <input
+        type="text"
+        id="wishTitle"
+        maxlength="100"
+        placeholder="contoh: my wishes at 17..."
+      >
+
+      <label for="wishContent">Things I wish for ♡</label>
+
+      <textarea
+        id="wishContent"
+        maxlength="5000"
+        style="min-height: 220px;"
+        placeholder="di umurku yang baru ini, aku berharap..."
+      ></textarea>
+
+      <label for="wishDream">My dreams & goals 🌷</label>
+
+      <textarea
+        id="wishDream"
+        maxlength="3000"
+        placeholder="hal-hal yang ingin aku capai..."
+      ></textarea>
+
+      <label for="wishPrayer">A little prayer 💌</label>
+
+      <textarea
+        id="wishPrayer"
+        maxlength="3000"
+        placeholder="semoga aku selalu..."
+      ></textarea>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="saveMyDreams()"
+      >
+        SAVE MY WISHES 
+      </button>
+
+      <button
+        class="btn secondary"
+        type="button"
+        onclick="downloadMyDreams()"
+        style="width:100%; margin-top:12px;"
+      >
+        DOWNLOAD MY LETTER 💌
+      </button>
+
+      <p
+        id="dreamStatus"
+        style="font-size:12px; text-align:center; margin-top:15px;"
+      ></p>
+
+    </div>
+
+    <button class="back" onclick="goTo('home')">
+      ← back to birthday home
+    </button>
+
+    <p class="footer">
+      terimakasih
+    </p>
+
+  </div>
+</section>
+</body>
+</html>
